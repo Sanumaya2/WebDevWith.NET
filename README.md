@@ -23,3 +23,11 @@
 4. UAT - PO/TPO/BA , User Acceptance Testing(https://uat.collegemonitor.com)
 5. PROD - Production Environment(https://collegemonitor.com)
 
+# collegemonitor requirement
+## Entities/Tables/MOdels
+1. Class - Id , Title , Start , Duration , Details
+1. Course - Id , Name, Textbook, Credithrs
+1. Student - Id , Name , Address, Email, Program, Semester
+
+Course has multiple classes(one to many)
+Student may enroll on multiple courses and a course can be studied by multiple students(many to many)
