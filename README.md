@@ -25,7 +25,7 @@
 
 # collegemonitor requirement
 ## Entities/Tables/MOdels
-1. Class - Id , Title , Start , Duration , Details
+1. Class (session)- Id , Title , Start , Duration , Details
 1. Course - Id , Name, Textbook, Credithrs
 1. Student - Id , Name , Address, Email, Program, Semester
 
