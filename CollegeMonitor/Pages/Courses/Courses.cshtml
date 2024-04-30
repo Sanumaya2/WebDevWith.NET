@@ -1,0 +1,41 @@
+@page "/courses"
+@model CoursesModel
+<h2>List of all Courses</h2>
+<a href="/Courses/create" class="btn btn-success "><i class="bi bi-plus-lg"></i>New Courses</a>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Textbook</th>
+            <th scope="col">CreditHrs</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            int counter = 1;
+        }
+        @foreach (var course in Model.Courses)
+        {
+            <tr>
+                
+                <th scope="row">@(counter++)</th>
+                <td>@course.Name</td>
+                <td>@course.Textbook</td>
+                <td>@course.CreditHrs </td>
+                    <td>
+                        <a href="/Courses/Edit/@course.Id" class="btn btn-warning"><i class="bi bi-pen"></i>Edit</a>
+                         <a href="/Courses/Delete/@course.Id" class="btn btn-danger "><i class="bi bi-trash3"></i>Delete</a>
+                    </td> 
+            </tr>
+        }
+    </tbody>
+   
+</table>
+
+@* 1. On courses page , numbering should be 1,2,...
+2. For each course on courses, there should be  edit and delete buttons.
+3. When edit is clicked, course edit page should be displayed with course data prepopulated. *@
