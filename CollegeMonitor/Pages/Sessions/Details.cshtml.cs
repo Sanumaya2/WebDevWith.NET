@@ -11,7 +11,7 @@ namespace CollegeMonitor.Pages_Sessions
 {
     public class DetailsModel : PageModel
     {
-        private readonly NetStarter.Basics.DataAccess.CollegeDbContext _context;
+        private readonly  NetStarter.Basics.DataAccess.CollegeDbContext _context;
 
         public DetailsModel(NetStarter.Basics.DataAccess.CollegeDbContext context)
         {
