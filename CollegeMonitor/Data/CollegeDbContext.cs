@@ -1,8 +1,8 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 
-namespace NetStarter.Basics.DataAccess
-{
+namespace NetStarter.Basics.DataAccess;
+
    public class CollegeDbContext : DbContext
    {
       public DbSet<Course> Courses { get; set; }
@@ -15,4 +15,3 @@ namespace NetStarter.Basics.DataAccess
         }
 
    }
-}
