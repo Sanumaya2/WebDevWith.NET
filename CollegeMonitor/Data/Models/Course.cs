@@ -8,4 +8,5 @@ public class Course
     public string Name {get ; set ;}
     public String Textbook  {get ; set ;}
     public float CreditHrs {get ; set ;}
+    public List<Session> Sessions {get ; set ;}   //one to many
 }
