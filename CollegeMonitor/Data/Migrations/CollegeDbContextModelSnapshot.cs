@@ -45,6 +45,9 @@ namespace CollegeMonitor.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<int?>("CourseId")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("Details")
                         .HasColumnType("TEXT");
 
@@ -60,7 +63,23 @@ namespace CollegeMonitor.Data.Migrations
 
                     b.HasKey("id");
 
+                    b.HasIndex("CourseId");
+
                     b.ToTable("Sessions");
+                });
+
+            modelBuilder.Entity("Session", b =>
+                {
+                    b.HasOne("Course", "Course")
+                        .WithMany("Sessions")
+                        .HasForeignKey("CourseId");
+
+                    b.Navigation("Course");
+                });
+
+            modelBuilder.Entity("Course", b =>
+                {
+                    b.Navigation("Sessions");
                 });
 #pragma warning restore 612, 618
         }
