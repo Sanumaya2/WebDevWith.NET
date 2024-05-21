@@ -5,23 +5,44 @@ builder.Services.AddDbContext<CollegeDbContext>();
 var app = builder.Build();
 
 app.MapGet("/", () => "Learning Web Api");
-app.MapGet("/courses", (CollegeDbContext db) =>db.Courses.ToList());
-app.MapGet("/courses/{id:int}", (int id , CollegeDbContext db) => db.Courses.Find(id));
+app.MapGet("/courses", (CollegeDbContext db) => db.Courses.ToList());
+app.MapGet("/courses/{id:int}", (int id, CollegeDbContext db) => db.Courses.Find(id));
 app.MapGet("/sessions", (CollegeDbContext db) => db.Sessions.ToList());
-app.MapGet("/sessions/{id:int}", (int id , CollegeDbContext db) => db.Sessions.Find(id));
+app.MapGet("/sessions/{id:int}", (int id, CollegeDbContext db) => db.Sessions.Find(id));
 
-app.MapPost("/courses", (Course course, CollegeDbContext db) => {
+
+app.MapPost("/courses", (Course course, CollegeDbContext db) =>
+{
     db.Courses.Add(course);
     db.SaveChanges();
 });
-app.MapPUT("/courses/{id}", (int id Course course, CollegeDbContext db) => {
+app.MapPut("/courses", ( Course course, CollegeDbContext db) =>
+{
     db.Courses.Update(course);
     db.SaveChanges();
 });
-
-app.MapDELETE("/courses/{id}", (int id Course course, CollegeDbContext db) => {
-    db.Courses.delete(course);
+app.MapDelete("/courses", (Course course, CollegeDbContext db) =>
+{
+    db.Courses.Remove(course);
     db.SaveChanges();
 });
+
+app.MapPost("/sessions", (Session session, CollegeDbContext db) =>
+{
+    db.Sessions.Add(session);
+    db.SaveChanges();
+});
+app.MapPut("/sessions/{id}", (int id, Session session, CollegeDbContext db) =>
+{
+    db.Sessions.Update(session);
+    db.SaveChanges();
+});
+app.MapDelete("/sessions/{id}", (int id, CollegeDbContext db) =>
+{
+    var session = db.Sessions.Find(id);
+    db.Sessions.Remove(session);
+    db.SaveChanges();
+});
+
 
 app.Run();
