@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using NetStarter.Basics.DataAccess;
 
 public class CoursesModel : PageModel
 {
@@ -12,6 +11,7 @@ public class CoursesModel : PageModel
     // Consuming REST API with httpclient
     HttpClient http = new HttpClient();
     Courses = await http.GetFromJsonAsync<List<Course>>("http://localhost:5017/courses");
+   
 
     }
 }
