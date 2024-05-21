@@ -5,15 +5,15 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using NetStarter.Basics.DataAccess;
+
 
 namespace CollegeMonitor.Pages_Sessions
 {
     public class IndexModel : PageModel
     {
-        private readonly NetStarter.Basics.DataAccess.CollegeDbContext _context;
+        private readonly CollegeDbContext _context;
 
-        public IndexModel(NetStarter.Basics.DataAccess.CollegeDbContext context)
+        public IndexModel(CollegeDbContext context)
         {
             _context = context;
         }
