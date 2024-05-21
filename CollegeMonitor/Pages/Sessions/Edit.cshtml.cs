@@ -6,21 +6,22 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using NetStarter.Basics.DataAccess;
+
 
 namespace CollegeMonitor.Pages_Sessions
 {
     public class EditModel : PageModel
     {
-        private readonly NetStarter.Basics.DataAccess.CollegeDbContext _context;
+        private readonly CollegeDbContext _context;
 
-        public EditModel(NetStarter.Basics.DataAccess.CollegeDbContext context)
+        public EditModel(CollegeDbContext context)
         {
             _context = context;
         }
 
         [BindProperty]
         public Session Session { get; set; } = default!;
+            public List<Session> Sessions { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -28,8 +29,10 @@ namespace CollegeMonitor.Pages_Sessions
             {
                 return NotFound();
             }
+            HttpClient http = new HttpClient();
+            Sessions = await http.GetFromJsonAsync<List<Session>>("http://localhost:5017/sessions");
 
-            var session =  await _context.Sessions.FirstOrDefaultAsync(m => m.id == id);
+            var session = await _context.Sessions.FirstOrDefaultAsync(m => m.id == id);
             if (session == null)
             {
                 return NotFound();

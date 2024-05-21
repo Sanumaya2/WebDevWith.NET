@@ -5,21 +5,21 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using NetStarter.Basics.DataAccess;
 
 namespace CollegeMonitor.Pages_Sessions
 {
     public class DeleteModel : PageModel
     {
-        private readonly NetStarter.Basics.DataAccess.CollegeDbContext _context;
+        private readonly CollegeDbContext _context;
 
-        public DeleteModel(NetStarter.Basics.DataAccess.CollegeDbContext context)
+        public DeleteModel(CollegeDbContext context)
         {
             _context = context;
         }
 
         [BindProperty]
         public Session Session { get; set; } = default!;
+            public List<Session> Sessions { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -27,6 +27,9 @@ namespace CollegeMonitor.Pages_Sessions
             {
                 return NotFound();
             }
+            HttpClient http = new HttpClient();
+            Sessions = await http.GetFromJsonAsync<List<Session>>("http://localhost:5017/sessions");
+
 
             var session = await _context.Sessions.FirstOrDefaultAsync(m => m.id == id);
 
